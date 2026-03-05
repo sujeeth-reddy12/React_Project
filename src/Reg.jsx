@@ -25,13 +25,13 @@ function Reg()
     {
         try{
             //const res=await axios.post("http://localhost:8080/reg",data)
-                const res=await axios.post("http://cabsystemsms-1.onrender.com/register",data)
+                const res=await axios.post("https://cabsystemsms-1.onrender.com/register",data)
                 alert(res.data)
         }
     catch(xyz)
     {
-        //alert(xyz.response.data)
-        alert(xyz.response?.data || "Error")
+            const errorMessage = xyz.response?.data?.message || xyz.response?.data || xyz.message || "Registration failed"
+            alert(typeof errorMessage === "string" ? errorMessage : JSON.stringify(errorMessage))
     }
 }
 return(
