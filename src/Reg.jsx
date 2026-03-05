@@ -23,13 +23,21 @@ function Reg()
     }
     const submit=async()=>
     {
+        if (!data.username.trim() || !data.email.trim() || !data.password.trim()) {
+            alert("Please fill username, email, and password")
+            return
+        }
+
         try{
-            //const res=await axios.post("http://localhost:8080/reg",data)
                 const res=await axios.post("https://cabsystemsms-1.onrender.com/register",data)
                 alert(res.data)
         }
     catch(xyz)
     {
+            if (xyz.response?.status === 409) {
+                alert("User already exists. Try a different username or email.")
+                return
+            }
             const errorMessage = xyz.response?.data?.message || xyz.response?.data || xyz.message || "Registration failed"
             alert(typeof errorMessage === "string" ? errorMessage : JSON.stringify(errorMessage))
     }
