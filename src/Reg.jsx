@@ -25,7 +25,7 @@ function Reg() {
    
    try
    {
-     const res= await axios.post("https://myapp-backend.onrender.com/register",data)
+     const res= await axios.post("https://myapp-backend-70bk.onrender.com/register",data)
     alert(res.data)
    }
    catch(xyz)
